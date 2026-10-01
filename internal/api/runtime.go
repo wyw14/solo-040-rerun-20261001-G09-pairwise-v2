@@ -5,6 +5,7 @@ import (
 	"time"
 
 	"github.com/wyw14/cry-96/internal/admission"
+	"github.com/wyw14/cry-96/internal/certificate"
 	"github.com/wyw14/cry-96/internal/cycle"
 	"github.com/wyw14/cry-96/internal/gate"
 	"github.com/wyw14/cry-96/internal/hydraulics"
@@ -43,6 +44,7 @@ type Runtime struct {
 	Incidents       *monitor.IncidentReview
 	Health          *monitor.HealthRegistry
 	Recovery        *cycle.Recovery
+	Certificates    *certificate.Issuer
 	Chambers        []string
 	Now             func() time.Time
 }
@@ -97,6 +99,7 @@ func NewRuntime(ctx context.Context, dataDirectory string) (*Runtime, error) {
 	if _, err := recovery.RestoreAll(ctx); err != nil {
 		return nil, err
 	}
+	certificates := certificate.NewIssuer(store, recorder, now)
 	health := monitor.NewHealthRegistry()
 	for _, chamberID := range chambers {
 		for _, device := range []model.DeviceKind{
@@ -116,6 +119,7 @@ func NewRuntime(ctx context.Context, dataDirectory string) (*Runtime, error) {
 		Leases: leaseService, LeaseSweeper: leaseSweeper, Safety: safetyService,
 		Snapshot:  monitor.NewSnapshot(cycleCoordinator, gateState, admissionService, signalService, safetyService, now),
 		Incidents: monitor.NewIncidentReview(store), Health: health, Recovery: recovery,
-		Chambers: chambers, Now: now,
+		Certificates: certificates,
+		Chambers:     chambers, Now: now,
 	}, nil
 }

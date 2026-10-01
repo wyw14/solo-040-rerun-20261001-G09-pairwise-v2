@@ -1,0 +1,14 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>LockFlow Certificates</title><link rel="stylesheet" href="/assets/styles.css"></head>
+<body>
+<header><div class="brand"><span class="brand-mark">LF</span>LockFlow</div><nav><a href="/operations">Operations</a><a href="/chamber">Chamber</a><a href="/interlocks">Interlocks</a><a href="/incidents">Incidents</a><a aria-current="page" href="/certificates">Certificates</a></nav></header>
+<main>
+  <div class="page-title"><div><h1>Transit certificates</h1><div class="muted">Non-repeatable electronic vouchers, issued only for completed transits with confirmed signal handoff</div></div><button id="refresh">Refresh</button></div>
+  <section class="panel wide">
+    <table><thead><tr><th>Chamber</th><th>Cycle</th><th>Direction</th><th>Vessels</th><th>Stage</th><th>Certificate</th><th>Actions</th></tr></thead><tbody id="certificates"></tbody></table>
+  </section>
+  <div class="message" id="message"></div>
+</main>
+<script src="/assets/app.js"></script><script src="/assets/certificates.js"></script>
+</body></html>

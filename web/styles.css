@@ -50,9 +50,17 @@ th, td { text-align: left; border-bottom: 1px solid #2c3941; padding: 10px 8px; 
 th { color: #91a0a8; font-weight: 600; }
 .status { display: inline-flex; align-items: center; gap: 7px; }
 .status::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: #5bc0be; }
+.status.ok::before { background: #46b97a; }
 .status.warning::before { background: #f2c14e; }
 .status.critical::before { background: #ef6f6c; }
+.status.notice::before { background: #91a0a8; }
 .message { min-height: 22px; color: #f2c14e; font-size: 13px; margin-top: 10px; white-space: pre-wrap; }
+.actions { white-space: nowrap; }
+.button-link {
+  display: inline-block; border: 1px solid #5bc0be; color: #fff; text-decoration: none;
+  border-radius: 4px; padding: 7px 11px; font-size: 13px; margin-right: 6px; background: #1d6f72;
+}
+.button-link:hover { background: #27878a; }
 @media (max-width: 780px) {
   header { height: auto; padding: 14px 18px; align-items: flex-start; flex-direction: column; gap: 10px; }
   main { padding: 20px 16px 40px; }
