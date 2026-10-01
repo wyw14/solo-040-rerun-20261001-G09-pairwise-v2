@@ -5,6 +5,7 @@ import (
 	"time"
 
 	"github.com/wyw14/cry-96/internal/admission"
+	"github.com/wyw14/cry-96/internal/certificate"
 	"github.com/wyw14/cry-96/internal/cycle"
 	"github.com/wyw14/cry-96/internal/gate"
 	"github.com/wyw14/cry-96/internal/hydraulics"
@@ -42,6 +43,7 @@ type Runtime struct {
 	Snapshot        *monitor.Snapshot
 	Incidents       *monitor.IncidentReview
 	Health          *monitor.HealthRegistry
+	Certificates    *certificate.Service
 	Recovery        *cycle.Recovery
 	Chambers        []string
 	Now             func() time.Time
@@ -115,7 +117,8 @@ func NewRuntime(ctx context.Context, dataDirectory string) (*Runtime, error) {
 		Interlocks: interlockCoordinator, Cycles: cycleCoordinator, CycleService: cycleService,
 		Leases: leaseService, LeaseSweeper: leaseSweeper, Safety: safetyService,
 		Snapshot:  monitor.NewSnapshot(cycleCoordinator, gateState, admissionService, signalService, safetyService, now),
-		Incidents: monitor.NewIncidentReview(store), Health: health, Recovery: recovery,
+		Incidents: monitor.NewIncidentReview(store), Health: health,
+		Certificates: certificate.NewService(store), Recovery: recovery,
 		Chambers: chambers, Now: now,
 	}, nil
 }

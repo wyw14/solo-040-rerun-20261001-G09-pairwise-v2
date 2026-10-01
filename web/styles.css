@@ -59,3 +59,15 @@ th { color: #91a0a8; font-weight: 600; }
   .panel, .panel.third { grid-column: span 12; }
   .form-row, .metrics { grid-template-columns: 1fr; }
 }
+
+/* Certificates */
+.action-link { color: #5bc0be; text-decoration: none; margin-right: 12px; font-size: 13px; white-space: nowrap; }
+.action-link:hover { text-decoration: underline; }
+.code-cell { font-family: ui-monospace, Consolas, monospace; font-size: 12px; }
+.cert-card { border: 1px solid #33404a; background: #1d262d; padding: 18px; border-radius: 6px; margin-top: 12px; }
+.cert-card strong { font-size: 16px; }
+.cert-card table { margin-top: 12px; }
+.cert-card th { width: 220px; }
+.cert-actions { display: flex; gap: 10px; margin-top: 16px; }
+.cert-actions a { text-decoration: none; }
+.status.ok::before { background: #4caf82; }
